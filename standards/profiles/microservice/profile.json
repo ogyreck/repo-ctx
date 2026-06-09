@@ -1,0 +1,12 @@
+{
+  "name": "microservice",
+  "description": "Профиль для микросервисов с CI/CD через GitLab и сборкой образов в Kaniko.",
+  "context": [
+    "gitlab-ce-conventions"
+  ],
+  "commands": [
+    "ci-kaniko"
+  ],
+  "agents": [],
+  "mcp": []
+}
