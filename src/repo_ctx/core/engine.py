@@ -178,12 +178,14 @@ def get_status(dest_root: str) -> dict[str, Any]:
             logger.warning("get_status: файл отсутствует (дрейф): %s", abs_path)
             drifted.append(rel_path)
             continue
-        with open(abs_path, encoding="utf-8") as f:
-            content = f.read()
-        # Для текстовых файлов проверяем наличие маркера (CLAUDE.md)
-        if abs_path.endswith(".md") and not has_marker_block(content):
-            logger.warning("get_status: маркеры удалены (дрейф): %s", abs_path)
-            drifted.append(rel_path)
+        # Маркеры проверяем только в memory-файлах (CLAUDE.md).
+        # Файлы команд/агентов — обычные копии, маркеров не содержат.
+        if os.path.basename(abs_path) == "CLAUDE.md":
+            with open(abs_path, encoding="utf-8") as f:
+                content = f.read()
+            if not has_marker_block(content):
+                logger.warning("get_status: маркеры удалены (дрейф): %s", abs_path)
+                drifted.append(rel_path)
 
     status = {
         "initialized": True,
