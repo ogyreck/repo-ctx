@@ -71,6 +71,7 @@ def _make_parser() -> argparse.ArgumentParser:
         metavar="NAME",
         help="Имя профиля (по умолчанию: определяется автоматически)",
     )
+    init_p.add_argument("--dry-run", action="store_true", help="Без записи файлов")
 
     # repo-ctx sync
     sync_p = sub.add_parser("sync", help="Обновление standards с сохранением локальных правок")
@@ -87,6 +88,7 @@ def _make_parser() -> argparse.ArgumentParser:
         metavar="NAME",
         help="Имя адаптера (target). По умолчанию: claude-code",
     )
+    sync_p.add_argument("--dry-run", action="store_true", help="Без записи файлов")
 
     # repo-ctx status
     status_p = sub.add_parser("status", help="Отображение текущего состояния и дрейфа")
