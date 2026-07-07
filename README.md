@@ -198,4 +198,4 @@ cli.py → core/ ← adapters/
 - `adapters/` — конкретные реализации; регистрируются при импорте
 - `cli.py` — только разбор аргументов и делегирование core
 
-Подробнее: [`.ai-factory/ARCHITECTURE.md`](.ai-factory/ARCHITECTURE.md)
+
